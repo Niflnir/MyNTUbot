@@ -11,11 +11,14 @@ from telegram.ext import (
 )
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 
+import sys
+
+sys.path.append("../")
+import mongosetup
+
 
 def start(update: Update, context: CallbackContext) -> int:
-    cluster = MongoClient(os.environ.get("MONGODB"))
-    db = cluster["ntubot"]
-    collection = db["studentinfo"]
+    collection = mongosetup.mongo("studentinfo")
 
     userinfo = update.message.from_user
     chat_id = update.message.chat_id

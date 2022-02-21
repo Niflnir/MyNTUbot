@@ -1,5 +1,4 @@
 import logging
-from pymongo import collection
 import os
 from telegram.ext import (
     Updater,
@@ -9,26 +8,9 @@ from telegram.ext import (
     ConversationHandler,
     CallbackQueryHandler,
 )
-
-# from handlers.gpa import gpa_start, calc_gpa
-# from handlers.food_guide import (
-#     food_start,
-#     northHillFood,
-#     tamarindFood,
-#     hall11Food,
-# )
-from handlers import *
 import handlers
+import mongosetup
 
-# from handlers.useful_links import from handlers.anonchat import anon_chat, anon_chat_start
-# from handlers.common_handlers import start, restart, cancel
-# from handlers.qotd import qotd
-from pymongo import MongoClient
-
-# Connect to Mongodb cluster
-client = MongoClient(os.environ.get("MONGODB"))
-db = client["ntubot"]
-collection = db["courseandyear"]
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -137,6 +119,7 @@ def main():
         )
     )
 
+    # Quote of the day
     dispatcher.add_handler(
         CallbackQueryHandler(pattern="qotd", callback=handlers.qotd)
     )

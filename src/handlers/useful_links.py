@@ -8,6 +8,10 @@ from telegram.ext import (
     CallbackContext,
 )
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
+import sys
+
+sys.path.append("../")
+import mongosetup
 
 
 def useful_links(update: Update, context: CallbackContext):
@@ -40,9 +44,7 @@ def useful_links(update: Update, context: CallbackContext):
 
 
 def faculty(update: Update, context: CallbackContext):
-    client = MongoClient(os.environ.get("MONGODB"))
-    db = client["ntubot"]
-    collection = db["courseandyear"]
+    collection = mongosetup.mongo("courseandyear")
     print(collection.find())
     faculties = [
         InlineKeyboardButton(
@@ -60,9 +62,7 @@ def faculty(update: Update, context: CallbackContext):
 
 # Select NTU course
 def course(update: Update, context: CallbackContext):
-    client = MongoClient(os.environ.get("MONGODB"))
-    db = client["ntubot"]
-    collection = db["courseandyear"]
+    collection = mongosetup.mongo("courseandyear")
     courses = [
         InlineKeyboardButton(
             i["coursename"],
@@ -83,9 +83,7 @@ def course(update: Update, context: CallbackContext):
 
 # Select NTU year
 def year(update: Update, context: CallbackContext):
-    client = MongoClient(os.environ.get("MONGODB"))
-    db = client["ntubot"]
-    collection = db["courseandyear"]
+    collection = mongosetup.mongo("courseandyear")
     course_name = update.callback_query.data.split("_")[1]
     years = []
     for i in collection.find_one({"courses.coursename": course_name})[
