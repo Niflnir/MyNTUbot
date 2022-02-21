@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  app:
+    image: ntubot
+    build: .
+    container_name: ntubot
+    env_file: .env

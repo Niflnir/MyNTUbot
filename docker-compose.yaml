@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  app:
+    image: ntubot
+    build: ./src
+    container_name: ntubot
+    env_file: .env
+    environment:
+      - DEV=1
+    command: ["python", "app.py"]

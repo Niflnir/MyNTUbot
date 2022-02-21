@@ -40,7 +40,10 @@ logger = logging.getLogger(__name__)
 
 def main():
 
-    TOKEN = os.environ.get("TOKEN")
+    if os.environ.get("DEV"):
+        TOKEN = os.environ.get("TEST_TOKEN")
+    else:
+        TOKEN = os.environ.get("TOKEN")
     PORT = int(os.environ.get("PORT", "80"))
 
     updater = Updater(TOKEN)
