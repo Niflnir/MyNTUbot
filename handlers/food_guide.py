@@ -1,24 +1,8 @@
-import json
-import logging
-import requests
-import os
-from telegram import (
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    Update,
-    InlineKeyboardMarkup,
-)
+from telegram import InlineKeyboardMarkup, Update
 from telegram.ext import (
-    Updater,
-    CommandHandler,
-    MessageHandler,
-    Filters,
     ConversationHandler,
     CallbackContext,
-    CallbackQueryHandler,
-    callbackcontext,
 )
-from telegram.ext.utils.types import ConversationDict
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 
 

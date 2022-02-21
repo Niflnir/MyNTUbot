@@ -9,33 +9,26 @@ from telegram.ext import (
     ConversationHandler,
     CallbackQueryHandler,
 )
-from handlers.gpa import gpa_start, calc_gpa
-from handlers.food_guide import (
-    food_start,
-    northHillFood,
-    tamarindFood,
-    hall11Food,
-)
-from handlers.useful_links import useful_links, course, faculty, year
-from handlers.anonchat import anon_chat, anon_chat_start
-from handlers.common_handlers import start, restart, cancel
+
+# from handlers.gpa import gpa_start, calc_gpa
+# from handlers.food_guide import (
+#     food_start,
+#     northHillFood,
+#     tamarindFood,
+#     hall11Food,
+# )
+from handlers import *
+import handlers
+
+# from handlers.useful_links import from handlers.anonchat import anon_chat, anon_chat_start
+# from handlers.common_handlers import start, restart, cancel
+# from handlers.qotd import qotd
 from pymongo import MongoClient
 
 # Connect to Mongodb cluster
-cluster = MongoClient(os.environ.get("MONGODB"))
-
-db = cluster["ntubot"]
+client = MongoClient(os.environ.get("MONGODB"))
+db = client["ntubot"]
 collection = db["courseandyear"]
-# collection.update_one(
-#     {
-#         "_id": 3,
-#         "course": "computerscience",
-#         "acadyear": "2019",
-#         "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/cs/ay2019/ay1920-scse-cs-programme-(24-may-2021).pdf?sfvrsn=74c72a12_2",
-#     }
-# )
-# newvalues = {"$set": {"course": "computerscience"}}
-# collection.update_one({"_id": 1}, newvalues)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -54,42 +47,47 @@ def main():
     dispatcher = updater.dispatcher
 
     # To start the bot and open the start menu
-    dispatcher.add_handler(CommandHandler("start", start))
+    dispatcher.add_handler(CommandHandler("start", handlers.start))
 
     # Go back to start menu
     dispatcher.add_handler(
-        CallbackQueryHandler(pattern="restart", callback=restart)
+        CallbackQueryHandler(pattern="restart", callback=handlers.restart)
     )
 
     # For GPA helper
     dispatcher.add_handler(
         ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(pattern="calc_gpa", callback=gpa_start)
+                CallbackQueryHandler(
+                    pattern="calc_gpa", callback=handlers.gpa_start
+                )
             ],
-            states={0: [MessageHandler(Filters.text, calc_gpa)]},
-            fallbacks=[CommandHandler("cancel", cancel)],
+            states={0: [MessageHandler(Filters.text, handlers.calc_gpa)]},
+            fallbacks=[CommandHandler("cancel", handlers.cancel)],
         )
     )
     dispatcher.add_handler(
         ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(pattern="food_guide", callback=food_start)
+                CallbackQueryHandler(
+                    pattern="food_guide", callback=handlers.food_start
+                )
             ],
             states={
                 0: [
                     CallbackQueryHandler(
-                        pattern="northhill", callback=northHillFood
+                        pattern="northhill", callback=handlers.northHillFood
                     ),
                     CallbackQueryHandler(
-                        pattern="hall10/11", callback=hall11Food
+                        pattern="hall10/11", callback=handlers.hall11Food
                     ),
                     CallbackQueryHandler(
-                        pattern="tamarind", callback=tamarindFood
+                        pattern="tamarind",
+                        callback=handlers.tamarindFood,
                     ),
                 ]
             },
-            fallbacks=[CommandHandler("cancel", cancel)],
+            fallbacks=[CommandHandler("cancel", handlers.cancel)],
         )
     )
 
@@ -97,30 +95,47 @@ def main():
     dispatcher.add_handler(
         ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(pattern="anon_chat", callback=anon_chat)
+                CallbackQueryHandler(
+                    pattern="anon_chat", callback=handlers.anon_chat
+                )
             ],
-            states={0: [MessageHandler(Filters.text, anon_chat)]},
-            fallbacks=[CommandHandler("cancel", cancel)],
+            states={0: [MessageHandler(Filters.text, handlers.anon_chat)]},
+            fallbacks=[CommandHandler("cancel", handlers.cancel)],
         )
     )
 
     # For useful links like START, Degree Audit
     dispatcher.add_handler(
-        CallbackQueryHandler(pattern="useful_links", callback=useful_links)
+        CallbackQueryHandler(
+            pattern="useful_links", callback=handlers.useful_links
+        )
     )
+    # Course curriculum
     dispatcher.add_handler(
         ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(pattern="curriculum", callback=faculty)
+                CallbackQueryHandler(
+                    pattern="curriculum", callback=handlers.faculty
+                )
             ],
             states={
                 0: [
-                    CallbackQueryHandler(pattern="faculty_.*", callback=course)
+                    CallbackQueryHandler(
+                        pattern="faculty_.*", callback=handlers.course
+                    )
                 ],
-                1: [CallbackQueryHandler(pattern="course_.*", callback=year)],
+                1: [
+                    CallbackQueryHandler(
+                        pattern="course_.*", callback=handlers.year
+                    )
+                ],
             },
-            fallbacks=[CommandHandler("cancel", cancel)],
+            fallbacks=[CommandHandler("cancel", handlers.cancel)],
         )
+    )
+
+    dispatcher.add_handler(
+        CallbackQueryHandler(pattern="qotd", callback=handlers.qotd)
     )
 
     updater.start_polling()

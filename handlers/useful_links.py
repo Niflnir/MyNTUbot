@@ -1,13 +1,10 @@
-import os
-import re
 from pymongo import MongoClient
+import os
 from telegram import (
     Update,
     InlineKeyboardMarkup,
-    replykeyboardmarkup,
 )
 from telegram.ext import (
-    ConversationHandler,
     CallbackContext,
 )
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
@@ -43,18 +40,9 @@ def useful_links(update: Update, context: CallbackContext):
 
 
 def faculty(update: Update, context: CallbackContext):
-    cluster = MongoClient(os.environ.get("MONGODB"))
-    db = cluster["ntubot"]
+    client = MongoClient(os.environ.get("MONGODB"))
+    db = client["ntubot"]
     collection = db["courseandyear"]
-    #     update.callback_query.message.reply_text(
-    #         "please enter the course and year"
-    #     )
-    #     update.callback_query.message.reply_text(
-    #         """
-    # for example:
-    # computerscience 2021
-    #     """
-    #     )
     print(collection.find())
     faculties = [
         InlineKeyboardButton(
@@ -70,10 +58,10 @@ def faculty(update: Update, context: CallbackContext):
     return 0
 
 
-# Select Academic Year
+# Select NTU course
 def course(update: Update, context: CallbackContext):
-    cluster = MongoClient(os.environ.get("MONGODB"))
-    db = cluster["ntubot"]
+    client = MongoClient(os.environ.get("MONGODB"))
+    db = client["ntubot"]
     collection = db["courseandyear"]
     courses = [
         InlineKeyboardButton(
@@ -93,9 +81,10 @@ def course(update: Update, context: CallbackContext):
     return 1
 
 
+# Select NTU year
 def year(update: Update, context: CallbackContext):
-    cluster = MongoClient(os.environ.get("MONGODB"))
-    db = cluster["ntubot"]
+    client = MongoClient(os.environ.get("MONGODB"))
+    db = client["ntubot"]
     collection = db["courseandyear"]
     course_name = update.callback_query.data.split("_")[1]
     years = []

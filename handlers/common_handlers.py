@@ -45,6 +45,11 @@ def start(update: Update, context: CallbackContext) -> int:
                         "Useful Links", callback_data="useful_links"
                     )
                 ],
+                [
+                    InlineKeyboardButton(
+                        "Quote of the Day", callback_data="qotd"
+                    )
+                ],
             ]
         ),
     )
