@@ -9,7 +9,6 @@ from telegram.ext import (
     CallbackQueryHandler,
 )
 import handlers
-import mongosetup
 
 
 logging.basicConfig(
@@ -72,19 +71,6 @@ def main():
                     ),
                 ]
             },
-            fallbacks=[CommandHandler("cancel", handlers.cancel)],
-        )
-    )
-
-    # For anonymous chat
-    dispatcher.add_handler(
-        ConversationHandler(
-            entry_points=[
-                CallbackQueryHandler(
-                    pattern="anon_chat", callback=handlers.anon_chat
-                )
-            ],
-            states={0: [MessageHandler(Filters.text, handlers.anon_chat)]},
             fallbacks=[CommandHandler("cancel", handlers.cancel)],
         )
     )

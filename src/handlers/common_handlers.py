@@ -1,5 +1,4 @@
-import os
-from pymongo import MongoClient
+import logging
 from telegram import (
     ReplyKeyboardRemove,
     Update,
@@ -15,6 +14,12 @@ import sys
 
 sys.path.append("../")
 import mongosetup
+
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> int:
@@ -42,7 +47,6 @@ def start(update: Update, context: CallbackContext) -> int:
                         "Food Guide", callback_data="food_guide"
                     )
                 ],
-                [InlineKeyboardButton("Anon Chat", callback_data="anon_chat")],
                 [
                     InlineKeyboardButton(
                         "Useful Links", callback_data="useful_links"
@@ -61,17 +65,17 @@ def start(update: Update, context: CallbackContext) -> int:
 def cancel(update: Update, context: CallbackContext) -> int:
     """Cancels and ends the conversation."""
     user = update.message.from_user
-    logger.info("User %s canceled the conversation.", user.first_name)
+    logger.info("User %s canceled the conversation.", user.username)
     update.message.reply_text(
-        "Bye! I hope we can talk again some day.",
+        "Bye! Have a nice day!",
         reply_markup=ReplyKeyboardRemove(),
     )
 
     return ConversationHandler.END
 
 
-def restart(update: Update, _context: CallbackContext):
-    update.callback_query.message.reply_text(
+def restart(update: Update, context: CallbackContext):
+    update.callback_query.message.edit_text(
         "Hi! What would you like to do?",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
@@ -86,10 +90,14 @@ def restart(update: Update, _context: CallbackContext):
                         "Food Guide", callback_data="food_guide"
                     )
                 ],
-                [InlineKeyboardButton("Anon Chat", callback_data="anon_chat")],
                 [
                     InlineKeyboardButton(
                         "Useful Links", callback_data="useful_links"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Quote of the Day", callback_data="qotd"
                     )
                 ],
             ]
