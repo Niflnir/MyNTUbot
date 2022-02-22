@@ -15,7 +15,7 @@ import mongosetup
 
 
 def useful_links(update: Update, context: CallbackContext):
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         "Hi! What would you like to do?",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
@@ -53,7 +53,7 @@ def faculty(update: Update, context: CallbackContext):
         for i in collection.find()
     ]
 
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         "Please select the faculty",
         reply_markup=InlineKeyboardMarkup([faculties]),
     )
@@ -73,7 +73,7 @@ def course(update: Update, context: CallbackContext):
         )["courses"]
     ]
 
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         "Please select the year",
         reply_markup=InlineKeyboardMarkup([courses]),
     )
@@ -93,7 +93,7 @@ def year(update: Update, context: CallbackContext):
             for j in i["urls"]:
                 years.append(InlineKeyboardButton(j["year"], url=j["url"]))
 
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         "Please select the year",
         reply_markup=InlineKeyboardMarkup([years]),
     )

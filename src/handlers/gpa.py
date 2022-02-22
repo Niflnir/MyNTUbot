@@ -8,10 +8,10 @@ from telegram.ext import (
 
 
 def gpa_start(update: Update, context: CallbackContext):
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         "Please enter the number of AUs and the grade for the mods."
     )
-    update.callback_query.message.reply_text(
+    update.callback_query.message.edit_text(
         """
 Example:
 3 A
@@ -56,11 +56,11 @@ def calc_gpa(update: Update, context: CallbackContext):
             total_aus += int(aus)
             running_sum += float(numGrade) * int(aus)
 
-        update.message.reply_text(f"Your GPA is {(running_sum/total_aus):.2f}")
+        update.message.edit_text(f"Your GPA is {(running_sum/total_aus):.2f}")
 
     except Exception as e:
         print(str(e))
-        update.message.reply_text("Dumb fuck. you sure u in NTU")
+        update.message.edit_text("Dumb fuck. you sure u in NTU")
         return 0
 
     return ConversationHandler.END
