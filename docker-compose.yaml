@@ -3,9 +3,20 @@ version: "3.7"
 services:
   app:
     image: ntubot
-    build: ./src
+    build: ./telebot
     container_name: ntubot
     env_file: .env
     environment:
       - DEV=1
     command: ["python", "app.py"]
+
+  api:
+    image: node:17-alpine
+    container_name: ntubot-api
+    env_file: .env
+    command: ["sh", "-c", "npm start"]
+    working_dir: /usr/src/app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/usr/src/app

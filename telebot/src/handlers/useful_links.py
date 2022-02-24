@@ -1,5 +1,5 @@
-from pymongo import MongoClient
 import os
+import requests
 from telegram import (
     Update,
     InlineKeyboardMarkup,
@@ -8,10 +8,6 @@ from telegram.ext import (
     CallbackContext,
 )
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
-import sys
-
-sys.path.append("../")
-import mongosetup
 
 
 def useful_links(update: Update, context: CallbackContext):
@@ -44,13 +40,10 @@ def useful_links(update: Update, context: CallbackContext):
 
 
 def faculty(update: Update, context: CallbackContext):
-    collection = mongosetup.mongo("courseandyear")
-    print(collection.find())
+    r = requests.get(os.environ.get("API_URL") + "getfaculty").json()
     faculties = [
-        InlineKeyboardButton(
-            i["faculty"], callback_data="faculty_" + i["faculty"]
-        )
-        for i in collection.find()
+        InlineKeyboardButton(faculty, callback_data="faculty_" + faculty)
+        for faculty in r
     ]
 
     update.callback_query.message.edit_text(
@@ -62,19 +55,21 @@ def faculty(update: Update, context: CallbackContext):
 
 # Select NTU course
 def course(update: Update, context: CallbackContext):
-    collection = mongosetup.mongo("courseandyear")
+    r = requests.get(
+        os.environ.get("API_URL")
+        + f"getcourse/{update.callback_query.data.split('_')[1]}"
+    ).json()
+    print(r)
     courses = [
         InlineKeyboardButton(
-            i["coursename"],
-            callback_data="course_" + i["coursename"],
+            coursename,
+            callback_data="course_" + coursename,
         )
-        for i in collection.find_one(
-            {"faculty": update.callback_query.data.split("_")[1]}
-        )["courses"]
+        for coursename in r
     ]
 
     update.callback_query.message.edit_text(
-        "Please select the year",
+        "Please select the course",
         reply_markup=InlineKeyboardMarkup([courses]),
     )
 
@@ -83,16 +78,13 @@ def course(update: Update, context: CallbackContext):
 
 # Select NTU year
 def year(update: Update, context: CallbackContext):
-    collection = mongosetup.mongo("courseandyear")
-    course_name = update.callback_query.data.split("_")[1]
-    years = []
-    for i in collection.find_one({"courses.coursename": course_name})[
-        "courses"
-    ]:
-        if i["coursename"] == course_name:
-            for j in i["urls"]:
-                years.append(InlineKeyboardButton(j["year"], url=j["url"]))
-
+    r = requests.get(
+        os.environ.get("API_URL")
+        + f"geturls/{update.callback_query.data.split('_')[1]}"
+    ).json()
+    print("---------------------------------------------------------------")
+    print(r)
+    years = [InlineKeyboardButton(i["year"], url=i["url"]) for i in r]
     update.callback_query.message.edit_text(
         "Please select the year",
         reply_markup=InlineKeyboardMarkup([years]),
