@@ -9,11 +9,8 @@ from telegram.ext import (
     CallbackContext,
 )
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
+import requests
 
-import sys
-
-sys.path.append("../")
-import mongosetup
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -23,14 +20,15 @@ logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> int:
-    collection = mongosetup.mongo("studentinfo")
-
     userinfo = update.message.from_user
     chat_id = update.message.chat_id
 
-    if collection.find_one({"_id": chat_id}) is None:
-        userinfo = {"_id": chat_id, "username": userinfo["username"]}
-        collection.insert_one(userinfo)
+    try:
+        requests.put(
+            "localhost:3000", data={"_id": chat_id, "username": userinfo}
+        )
+    except Exception as e:
+        print(e)
 
     update.message.reply_text(
         "Hi! What would you like to do?",
