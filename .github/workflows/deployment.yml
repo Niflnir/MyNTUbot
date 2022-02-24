@@ -23,7 +23,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, Tag and Push image to Amazon ECR.
+      - name: Build, Tag and Push ntubot image to Amazon ECR.
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -31,10 +31,23 @@ jobs:
           IMAGE_TAG: latest
         run: |
           cd src
-          docker build -t ntubot .
-          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com 
-          docker tag ntubot:latest 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com/ntubot:latest
-          docker push 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com/ntubot:latest
+          docker build -t $ECR_REPOSITORY .
+          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Build, Tag and Push ntuapi image to Amazon ECR.
+        id: build-image-api
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ntuapi
+          IMAGE_TAG: latest
+        run: |
+          cd src
+          docker build -t $ECR_REPOSITORY .
+          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Importing required files into EC2 instance.
         uses: appleboy/scp-action@master
@@ -56,5 +69,6 @@ jobs:
           script: |
             aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com 
             docker pull 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com/ntubot:latest
+            docker pull 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com/ntuapi:latest
             docker-compose up -d
             docker system prune -f
