@@ -11,6 +11,5 @@ services:
     image: 300237359268.dkr.ecr.ap-southeast-1.amazonaws.com/ntuapi:latest
     container_name: ntuapi
     env_file: .env
-    command: ["sh", "-c", "npm start"]
     ports:
       - 3000:3000
