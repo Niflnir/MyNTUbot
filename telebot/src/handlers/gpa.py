@@ -11,7 +11,7 @@ def gpa_start(update: Update, context: CallbackContext):
     update.callback_query.message.edit_text(
         "Please enter the number of AUs and the grade for the mods."
     )
-    update.callback_query.message.edit_text(
+    update.callback_query.message.reply_text(
         """
 Example:
 3 A
@@ -19,6 +19,7 @@ Example:
 4 B+
 3 B+
 3 A-
+Spacing is important!!!
 """
     )
     return 0
@@ -26,6 +27,20 @@ Example:
 
 def gradeToNum(grade) -> int:
     gradeToNumDict = {
+        "a+": 5.0,
+        "a": 5.0,
+        "a-": 4.5,
+        "b+": 4.0,
+        "b": 3.5,
+        "b-": 3.0,
+        "c+": 2.5,
+        "c": 2.0,
+        "c-": 1.5,
+        "d+": 1.0,
+        "d": 0.5,
+        "d-": 0,
+        "e": 0,
+        "f": 0,
         "A+": 5.0,
         "A": 5.0,
         "A-": 4.5,
@@ -56,11 +71,11 @@ def calc_gpa(update: Update, context: CallbackContext):
             total_aus += int(aus)
             running_sum += float(numGrade) * int(aus)
 
-        update.message.edit_text(f"Your GPA is {(running_sum/total_aus):.2f}")
+        update.message.reply_text(f"Your GPA is {(running_sum/total_aus):.2f}")
 
     except Exception as e:
         print(str(e))
-        update.message.edit_text("Dumb fuck. you sure u in NTU")
+        update.message.reply_text("Try again...")
         return 0
 
     return ConversationHandler.END
