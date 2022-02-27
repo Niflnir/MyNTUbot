@@ -1,0 +1,49 @@
+[
+  {
+    "faculty": "CCEB",
+    "courses": [
+      {
+        "coursename": "Bioengineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://ebook.ntu.edu.sg/ay2021-22-bie-study-plan.html"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/default-document-library/ay20-bie-study-plan-(combined).pdf?sfvrsn=adaff927_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/scbe/ug-programme-details/ay1920-bie-study-plan-combined-rev-aug-2019.pdf?sfvrsn=4e798aaa_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/scbe/ug-programme-details/ay1819-bie-study-plan-combined-rev-aug-2019.pdf?sfvrsn=42267f03_2"
+          }
+        ]
+      },
+      {
+        "coursename": "Chemical and Biomolecular Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://ebook.ntu.edu.sg/ay2021-22-cbe-study-plan.html"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/default-document-library/ay20-cbe-study-plan-(combined).pdf?sfvrsn=c00e7b99_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/scbe/ug-programme-details/ay1920-cbe-study-plan-combined-rev-aug-2019.pdf?sfvrsn=bbc46f1f_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider116/scbe/ug-programme-details/ay1819-cbe-study-plan-combined-rev-aug-2019.pdf?sfvrsn=96d3343e_2"
+          }
+        ]
+      }
+    ]
+  }
+]

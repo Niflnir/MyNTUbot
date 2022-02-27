@@ -75,7 +75,7 @@ def calc_gpa(update: Update, context: CallbackContext):
 
     except Exception as e:
         print(str(e))
-        update.message.reply_text("Try again...")
+        update.message.reply_text("TRY AGAIN PLEASE")
         return 0
 
     return ConversationHandler.END

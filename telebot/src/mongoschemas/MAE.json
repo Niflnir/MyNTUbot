@@ -1,0 +1,49 @@
+[
+  {
+    "faculty": "SCSE",
+    "courses": [
+      {
+        "coursename": "Aerospace Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/aerospace-engineering/admitted-as-year-1/admitted-as-year-1-ay2122"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/aerospace-engineering/admitted-as-year-1/admitted-as-year-1-ay2021"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/aerospace-engineering/admitted-as-year-1/admitted-as-year-1-ay1920"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/aerospace-engineering/admitted-as-year-1/admitted-as-year-1-ay1819"
+          }
+        ]
+      },
+      {
+        "coursename": "Mechanical Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/mechanical-engineering/admitted-as-year-1/mainstream/ay2021-2022"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/mechanical-engineering/admitted-as-year-1/mainstream/ay2020-2021"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/mechanical-engineering/admitted-as-year-1/mainstream/ay2019-2020"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/mae/admissions/current-students/undergraduate/mechanical-engineering/admitted-as-year-1/mainstream/ay2018-2019"
+          }
+        ]
+      }
+    ]
+  }
+]

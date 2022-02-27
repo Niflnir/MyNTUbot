@@ -1,0 +1,70 @@
+[
+  {
+    "faculty": "CEE",
+    "courses": [
+      {
+        "coursename": "Civil Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/cee/ay2122_cee_pi024dccbd717840068ac59185150fef92.pdf?sfvrsn=e2358c29_2"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/cee/ay2021_cee_pi.pdf?sfvrsn=68dabfa2_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/cee/ay2021_cee_pi.pdf?sfvrsn=68dabfa2_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/cee/ay1819_cee_pi.pdf?sfvrsn=875bcca0_2"
+          }
+        ]
+      },
+      {
+        "coursename": "Environmental Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ene/ay2122_ene_pi4d86ea741013472888d69d6468b47a29.pdf?sfvrsn=c095ad75_2"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ene/ay2021_ene_pi.pdf?sfvrsn=7ff2eb68_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ene/ay1920_ene_pi.pdf?sfvrsn=aa4d0819_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ene/ay1819_ene_pi.pdf?sfvrsn=e18c532c_2"
+          }
+        ]
+      },
+      {
+        "coursename": "Maritime Studies",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ms/ay2122_ms.pdf?sfvrsn=55cdfadd_2"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ms/ay2021_ms.pdf?sfvrsn=771a47bb_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ms/ay1920_ms.pdf?sfvrsn=4439eb2_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider117/current-undergraduate/curriculum/curriculum-structure/ms/ay1819_ms.pdf?sfvrsn=6d9dae68_2"
+          }
+        ]
+      }
+    ]
+  }
+]
