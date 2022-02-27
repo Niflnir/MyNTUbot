@@ -1,0 +1,66 @@
+[
+  {
+    "faculty": "SCSE",
+    "courses": [
+      {
+        "coursename": "Computer Science",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/cs/ay2021/ay2122-curriculum-structure-csc_12april2021.pdf?sfvrsn=fb52fbf0_4"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/cs/ay2020/ay2021-scse-cs-programme-(24-may-2021)_v2.pdf?sfvrsn=ac6193fd_3"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/cs/ay2019/ay1920-scse-cs-programme-(24-may-2021).pdf?sfvrsn=74c72a12_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/cs/ay2019/ay1920-scse-cs-programme-(24-may-2021).pdf?sfvrsn=74c72a12_2"
+          }
+        ]
+      },
+      {
+        "coursename": "Computer Engineering",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/ce/ay2021/ay2122-curriculum-structure-ce_12april2021.pdf?sfvrsn=d582a2e8_18"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/ce/ay2020/ay2021-scse-ce-(25-oct-2021)_v2.pdf?sfvrsn=1afe47e5_3"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/ce/ay2019/ay1920-scse-ce-programmes-(june-2021).pdf?sfvrsn=23f06593_2"
+          },
+          {
+            "year": 2018,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/ce/ay2018/ay1819-scse-ce-programmes-(june-2021).pdf?sfvrsn=6e897eed_2"
+          }
+        ]
+      },
+      {
+        "coursename": "Data Science and Artificial Intelligence",
+        "urls": [
+          {
+            "year": 2021,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/dsai/2021/ay21-22-dsai-curriculum82adf3dc02ab4de39d11d5ef71db08d9.pdf?sfvrsn=5506bee6_2"
+          },
+          {
+            "year": 2020,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/dsai/2021/ay2021-dsai-curriculum-structure-(140921).pdf?sfvrsn=18bfdc61_2"
+          },
+          {
+            "year": 2019,
+            "url": "https://www.ntu.edu.sg/docs/librariesprovider118/ug/dsai/2021/ay1920-dsai-curriculum-structure-(140921).pdf?sfvrsn=bc10e54a_2"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -3,8 +3,9 @@ import pymongo
 import os
 from pymongo import MongoClient
 
-f = open("schema.json")
+f = open("./mongoschemas/CEE.json")
 document = json.load(f)
+print(document)
 client = MongoClient(os.environ.get("MONGODB"))
 db = client["ntubot"]
 collection = db["courseandyear"]
