@@ -5,7 +5,7 @@ from pymongo import MongoClient
 f = open("./mongoschemas/CEE.json")
 document = json.load(f)
 print(document)
-client = MongoClient(os.get.environ("MONGODB"))
+client = MongoClient(os.environ.get("MONGODB"))
 db = client["ntubot"]
 collection = db["courseandyear"]
 for i in document:
