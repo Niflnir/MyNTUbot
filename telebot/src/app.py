@@ -79,30 +79,26 @@ def main():
     dispatcher.add_handler(
         CallbackQueryHandler(
             pattern="useful_links", callback=handlers.useful_links
-        )
+        ),
     )
+    dispatcher.add_handler(
+        CallbackQueryHandler(
+            pattern="useful_links_back", callback=handlers.useful_links
+        ),
+    )
+
     # Course curriculum
     dispatcher.add_handler(
-        ConversationHandler(
-            entry_points=[
-                CallbackQueryHandler(
-                    pattern="curriculum", callback=handlers.faculty
-                )
-            ],
-            states={
-                0: [
-                    CallbackQueryHandler(
-                        pattern="faculty_.*", callback=handlers.course
-                    )
-                ],
-                1: [
-                    CallbackQueryHandler(
-                        pattern="course_.*", callback=handlers.year
-                    )
-                ],
-            },
-            fallbacks=[CommandHandler("cancel", handlers.cancel)],
-        )
+        CallbackQueryHandler(pattern="curriculum", callback=handlers.faculty),
+    )
+    dispatcher.add_handler(
+        CallbackQueryHandler(pattern="faculty_.*", callback=handlers.course),
+    )
+    dispatcher.add_handler(
+        CallbackQueryHandler(pattern="course_.*", callback=handlers.year)
+    )
+    dispatcher.add_handler(
+        CallbackQueryHandler(pattern="facultyback", callback=handlers.faculty),
     )
 
     # Quote of the day
@@ -110,6 +106,14 @@ def main():
         CallbackQueryHandler(pattern="qotd", callback=handlers.qotd)
     )
 
+    # WEBHOOK = os.environ.get("WEBHOOK")
+    #
+    # updater.start_webhook(
+    #     listen="0.0.0.0",
+    #     port=80,
+    #     url_path=os.environ.get(TOKEN),
+    # )
+    # updater.bot.setWebhook(WEBHOOK + TOKEN)
     updater.start_polling()
     updater.idle()
 

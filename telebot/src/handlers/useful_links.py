@@ -7,6 +7,7 @@ from telegram import (
 from telegram.ext import (
     CallbackContext,
 )
+from telegram.ext.conversationhandler import ConversationHandler
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 
 
@@ -48,9 +49,17 @@ def faculty(update: Update, context: CallbackContext):
 
     update.callback_query.message.edit_text(
         "Please select the faculty",
-        reply_markup=InlineKeyboardMarkup([faculties]),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                faculties,
+                [
+                    InlineKeyboardButton(
+                        "Back", callback_data="useful_links_back"
+                    )
+                ],
+            ]
+        ),
     )
-    return 0
 
 
 # Select NTU course
@@ -70,10 +79,13 @@ def course(update: Update, context: CallbackContext):
 
     update.callback_query.message.edit_text(
         "Please select the course",
-        reply_markup=InlineKeyboardMarkup([courses]),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                courses,
+                [InlineKeyboardButton("Back", callback_data="facultyback")],
+            ],
+        ),
     )
-
-    return 1
 
 
 # Select NTU year
@@ -87,5 +99,10 @@ def year(update: Update, context: CallbackContext):
     years = [InlineKeyboardButton(i["year"], url=i["url"]) for i in r]
     update.callback_query.message.edit_text(
         "Please select the year",
-        reply_markup=InlineKeyboardMarkup([years]),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                years,
+                [InlineKeyboardButton("Back", callback_data="facultyback")],
+            ],
+        ),
     )
