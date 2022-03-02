@@ -105,16 +105,8 @@ def main():
     dispatcher.add_handler(
         CallbackQueryHandler(pattern="qotd", callback=handlers.qotd)
     )
-
-    # WEBHOOK = os.environ.get("WEBHOOK")
-    #
-    # updater.start_webhook(
-    #     listen="0.0.0.0",
-    #     port=80,
-    #     url_path=os.environ.get(TOKEN),
-    # )
-    # updater.bot.setWebhook(WEBHOOK + TOKEN)
     updater.start_polling()
+
     updater.idle()
 
 
